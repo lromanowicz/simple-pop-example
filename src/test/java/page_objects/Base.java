@@ -9,10 +9,8 @@ public class Base {
 
     public Base(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver, this);
-    }
 
-    public void openPage(String pageName) {
-        driver.findElement(By.xpath("//ul[@class=\"nav\"]//a[text()=\"" + pageName + "\"]")).click();
+        //Initialize PageFactory elements defined in @FindBy annotations
+        PageFactory.initElements(driver, this);
     }
 }

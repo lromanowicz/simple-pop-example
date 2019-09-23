@@ -3,9 +3,11 @@ package page_objects;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import utility.Generators;
 
 public class SignUp extends Base {
 
+    //@FindBy annotation looks for an element
     @FindBy(id = "usernamesignup")
     private WebElement usernameInput;
 
@@ -25,11 +27,15 @@ public class SignUp extends Base {
         super(driver);
     }
 
-    public void fillInAndSubmitForm(String username, String email, String password, String passwordConfirm) {
-        usernameInput.sendKeys(username);
-        emailInput.sendKeys(email);
+    public SignUpConfirmation fillInAndSubmitForm() {
+        String password = Generators.password();
+
+        usernameInput.sendKeys(Generators.username());
+        emailInput.sendKeys(Generators.email());
         passwordInput.sendKeys(password);
-        passwordConfirmInput.sendKeys(passwordConfirm);
+        passwordConfirmInput.sendKeys(password);
         submitButton.click();
+
+        return new SignUpConfirmation(driver);
     }
 }

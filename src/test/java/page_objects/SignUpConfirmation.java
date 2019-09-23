@@ -3,8 +3,10 @@ package page_objects;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 public class SignUpConfirmation extends Base {
+
     @FindBy(tagName = "h2")
     private WebElement pageHeader;
 
@@ -12,7 +14,7 @@ public class SignUpConfirmation extends Base {
         super(driver);
     }
 
-    public String getPageHeaderText() {
-        return pageHeader.getText();
+    public void assertThatPageHeaderIsCorrect() {
+        Assert.assertEquals(pageHeader.getText(), "Thank you for registration");
     }
 }

@@ -11,26 +11,32 @@ import page_objects.SignUp;
 import page_objects.SignUpConfirmation;
 
 public class BaseTest {
+    //Declare class fields
     private WebDriver driver;
     protected Home home;
-    protected SignUp signUp;
-    protected SignUpConfirmation signUpConfirmation;
-    protected Contact contact;
 
+    //Runs once before each @Test method
     @BeforeMethod
     public void setUp() {
+
+        //This line downloads and sets the chromedriver path.
+        //It will check what browser version is installed on your machine.
         WebDriverManager.chromedriver().setup();
 
+        //Open Chrome
         driver = new ChromeDriver();
+
+        //Maximize window
         driver.manage().window().maximize();
 
+        //Open URL
+        driver.get("http://jacekokrojek.github.io/jak-to-zrobic-w-js/index.html");
+
+        //Initialize Home object
         home = new Home(driver);
-        signUp = new SignUp(driver);
-        signUpConfirmation = new SignUpConfirmation(driver);
-        contact = new Contact(driver);
     }
 
-
+    //Runs once after each @Test method
     @AfterMethod
     public void tearDown() {
         driver.quit();

@@ -1,12 +1,13 @@
 package utility;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Actions {
+
+    //Custom sendKeys method to do a workaround for some problematic inputs
     public static void sendKeys(WebElement element, String text) {
         System.out.println("Wpisuję tekst: " + text + " w element: " + element.toString());
         element.click();
@@ -19,8 +20,8 @@ public class Actions {
         element.click();
     }
 
-    public static void waitForVisibilityOfElement(WebDriver driver, By locator, long timeoutInSeconds) {
+    public static void waitForVisibilityOfElement(WebDriver driver, WebElement element, long timeoutInSeconds) {
         WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        wait.until(ExpectedConditions.visibilityOf(element));
     }
 }

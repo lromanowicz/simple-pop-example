@@ -9,15 +9,20 @@ public class Home extends Base {
     @FindBy(xpath = "(//div[@class=\"carousel-caption\"]/a)[1]")
     private WebElement openSignUpPageButton;
 
+    @FindBy(xpath = "//a[text()=\"Contact\"]")
+    private WebElement contactLink;
+
     public Home(WebDriver driver) {
         super(driver);
     }
 
-    public void open() {
-        driver.get("http://jacekokrojek.github.io/jak-to-zrobic-w-js/index.html");
+    public SignUp openSignUpPage() {
+        openSignUpPageButton.click();
+        return new SignUp(driver);
     }
 
-    public void openSignUpPage() {
-        openSignUpPageButton.click();
+    public Contact openContactPage() {
+        contactLink.click();
+        return new Contact(driver);
     }
 }
